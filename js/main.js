@@ -35,15 +35,18 @@ var icon = {
     32: 'icon-wind',
 }
 
+// Funkcja uzupełnia informację dla danego dnia
 function fillDayInfo( dayIndex, data ) {
-    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+    // Złapanie odpowiedniego div'a z dniem
     const day = document.querySelectorAll(".day")[dayIndex];
+    // Złapanie odpowiedniego obiektu JSON z dniem
     const forecast = data.DailyForecasts[dayIndex];
 
+    // Nazwa dnia
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const date = new Date(forecast.Date);
     const dayName = dayIndex == 0 ? "Today" : days[date.getDay()];
-
-    // Nazwa dnia
     day.querySelector('h2').textContent = dayName;
 
     // Temperatura
@@ -58,8 +61,8 @@ function fillDayInfo( dayIndex, data ) {
     day.querySelector('.forecast').textContent = forecast.Day.ShortPhrase;
 }
 
-
-
+// Funkcja uruchamiana przy starcie strony, pobiera 
+// dane (tymczasowo mockupResponse) i uzupełnia poszczególne dni informacjami
 (async function(){
 
     let apiKey = 'q4yfgRGEhyRygj2fDKAZA02kiOUDkaPP'
