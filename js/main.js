@@ -1,4 +1,5 @@
 // Ikony tylko dla dnia
+// https://developer.accuweather.com/weather-icons
 var icon = {
     1: 'icon-sun',
     2: 'icon-sun',
