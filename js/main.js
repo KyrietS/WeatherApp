@@ -1,3 +1,65 @@
+// Ikony tylko dla dnia
+var icon = {
+    1: 'icon-sun',
+    2: 'icon-sun',
+    3: 'icon-cloud-sun',
+    4: 'icon-cloud-sun',
+    5: 'icon-fog-sun',
+    6: 'icon-cloud-sun',
+    7: 'icon-clouds',
+    8: 'icon-clouds',
+    9: 'icon-na',
+    10: 'icon-na',
+    11: 'icon-fog',
+    12: 'icon-rain',
+    13: 'icon-rain',
+    14: 'icon-rain',
+    15: 'icon-hail',
+    16: 'icon-hail',
+    17: 'icon-hail',
+    18: 'icon-hail',
+    19: 'icon-windy-rain',
+    20: 'icon-windy-rain',
+    20: 'icon-windy-rain',
+    21: 'icon-windy-rain',
+    22: 'icon-snow',
+    23: 'icon-snow-heavy',
+    24: 'icon-snowflake',
+    25: 'icon-rain',
+    26: 'icon-rain',
+    27: 'icon-na',
+    28: 'icon-na',
+    29: 'icon-rain',
+    30: 'icon-temperature',
+    31: 'icon-snowflake',
+    32: 'icon-wind',
+}
+
+function fillDayInfo( dayIndex, data ) {
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const day = document.querySelectorAll(".day")[dayIndex];
+    const forecast = data.DailyForecasts[dayIndex];
+
+    const date = new Date(forecast.Date);
+    const dayName = dayIndex == 0 ? "Today" : days[date.getDay()];
+
+    // Nazwa dnia
+    day.querySelector('h2').textContent = dayName;
+
+    // Temperatura
+    const temperature = forecast.Temperature.Maximum.Value;
+    day.querySelector('.temperature').textContent = Math.round(temperature) + '°C';
+    
+    // Ikona
+    const iconId = forecast.Day.Icon;
+    day.querySelector('.icon').className = 'icon ' + icon[iconId];
+
+    // Opis
+    day.querySelector('.forecast').textContent = forecast.Day.ShortPhrase;
+}
+
+
+
 (async function(){
 
     let apiKey = 'q4yfgRGEhyRygj2fDKAZA02kiOUDkaPP'
@@ -12,6 +74,7 @@
 
     // let x = mockupResponse.Headline.Text;
 
-    console.log(mockupResponse.Headline.Text);
-
+    for( let i = 0; i < 5; i++ ) {
+        fillDayInfo( i, mockupResponse );
+    }
 })()
