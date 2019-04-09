@@ -81,4 +81,57 @@ function fillDayInfo( dayIndex, data ) {
     for( let i = 0; i < 5; i++ ) {
         fillDayInfo( i, mockupResponse );
     }
+    makeCharts(mockupResponse);
 })()
+
+//wykresiki
+function makeCharts(data){
+    var params = {
+        // A labels array that can contain any sort of values
+        labels: [],
+        // Our series array that contains series objects or in this case series data arrays
+        series: [
+            [],[]
+        ]
+    };
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    for(let i=0; i<5;i++){
+        let forecast = data.DailyForecasts[i];
+        let date = new Date(forecast.Date);
+        params.labels.push(days[date.getDay()]);
+        params.series[0].push(forecast.Temperature.Maximum.Value);
+        params.series[1].push(forecast.RealFeelTemperature.Maximum.Value);
+    }
+    
+    
+    var options = {
+            showPoint: false,
+            //lineSmooth: false,
+            axisX: {
+                //showGrid: false
+            },
+            axisY: {
+                onlyInteger: true,
+                labelInterpolationFnc: function (value) {
+                    return value + ' °C';
+                },
+            }
+    };
+    var responsiveOptions = [
+        ['screen and (min-width: 641px) and (max-width: 1024px)', {
+            axisX: {
+                labelInterpolationFnc: function (value) {
+                    return value;
+                }
+            }
+        }],
+        ['screen and (max-width: 640px)', {
+            axisX: {
+                labelInterpolationFnc: function (value) {
+                    return value[0]+value[1]+value[2];
+                }
+            }
+        }]
+    ];
+    new Chartist.Line('#temperature_graph', params, options, responsiveOptions);
+}
