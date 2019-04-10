@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style/main.css">
+    <link rel="stylesheet" href="node_modules/chartist/dist/chartist.min.css">
     <script src="js/mockup.js"></script>
+    <script src="node_modules/chartist/dist/chartist.min.js" async></script>
     <script src="js/main.js" async></script>
     <title>WeatherApp</title>
 </head>
@@ -13,31 +15,31 @@
     <h1>WeatherApp</h1>
     <i class="icon icon-search"></i><input type="text" name="location" id="input-location" placeholder="Podaj miejscowość" value="Wrocław">
     <div id="days">
-        <div class="day day-1">
+        <div class="tile day day-1">
             <h2>Today</h2>
             <p class="temperature">19°C</p>
             <i class="icon icon-sun"></i>
             <p class="forecast">Mostly sunny; mild</p>
         </div>
-        <div class="day day-2">
+        <div class="tile day day-2">
             <h2>Tue</h2>
             <p class="temperature">8°C</p>
             <i class="icon icon-cloud-sun"></i>
             <p class="forecast">Clouds and sun; cooler elo melo 320</p>
         </div>
-        <div class="day day-3">
+        <div class="tile day day-3">
             <h2>Wed</h2>
             <p class="temperature">11°C</p>
             <i class="icon icon-windy"></i>
             <p class="forecast">Mostly cloudy; chilly</p>
         </div>
-        <div class="day day-4">
+        <div class="tile day day-4">
             <h2>Thu</h2>
             <p class="temperature">10°C</p>
             <i class="icon icon-clouds"></i>
             <p class="forecast">Clouds and sun; chilly</p>
         </div>
-        <div class="day day-5">
+        <div class="tile day day-5">
             <h2>Fri</h2>
             <p class="temperature">19°C</p>
             <i class="icon icon-cloud-sun"></i>
@@ -45,5 +47,22 @@
         </div>
     </div>
     <div id="json"></div>
+    <div id="graphs_container">
+        <div class="tile graph">
+            <h2>Temperature chart</h2>
+            <div id="temperature_graph" class="ct-chart ct-octave">
+            </div>
+            <span style="color:var(--series-a-color);">&#9632</span> Real Feel Temperature<br>
+            <span style="color:var(--series-b-color);">&#9632</span> Actual Temperature
+        </div>
+        <div class="tile graph">
+            <h2>Rain chart</h2>
+            <div id="rain_graph" class="ct-chart ct-octave">
+            </div>
+            <span style="color:var(--series-a-color);">&#9632</span> Day<br>
+            <span style="color:var(--series-b-color);">&#9632</span> Night
+        </div>
+    </div>
+    
 </body>
 </html>
