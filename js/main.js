@@ -1,4 +1,4 @@
-// Ikony tylko dla dnia
+﻿// Ikony tylko dla dnia
 // https://developer.accuweather.com/weather-icons
 var icon = {
     1: 'icon-sun',
@@ -82,3 +82,23 @@ function fillDayInfo( dayIndex, data ) {
         fillDayInfo( i, mockupResponse );
     }
 })()
+
+let locationId = '273125';
+const getLocation = (e) => {
+    let apiKey = 'drOPfTFPJtMpmZP8HhGBAmXmfx5wMytH'
+    let additions = '&details=true&metric=true';
+    const city = document.querySelector("#input-location").value;
+    const gl = async () => {
+        let response = await fetch(`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${apiKey}&q=${city}`);
+        let data = await response.json();
+        try {
+             locationId = data[0].Key;
+        } catch (error) {
+            console.log('Wrong city')
+        }
+    }
+    gl()
+    e.preventDefault();
+}
+
+document.querySelector("#input-location").addEventListener("input", getLocation);
