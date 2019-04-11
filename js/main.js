@@ -4,8 +4,7 @@ const icon = require('./icons');
 const axios = require('axios');
 
 // TYMCZASOWO DO TESTÓW
-// let weatherData = mockupResponse;
-let weatherData;
+let weatherData = mockupResponse;
 
 // Funkcja uzupełnia informację dla danego dnia
 function fillDayInfo( dayIndex, data ) {
