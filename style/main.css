@@ -75,6 +75,9 @@ h1 {
 .day .icon {
     font-size: 4em;
 }
+.day.selected {
+    color: var(--font-selected);
+}
 
 #day-summary {
     margin-left: auto;
