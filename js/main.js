@@ -1,6 +1,7 @@
 ﻿const mockupResponse = require('./mockup');
 const Chartist = require('chartist');
 const icon = require('./icons');
+const axios = require('axios');
 
 // TYMCZASOWO DO TESTÓW
 let weatherData = mockupResponse;
@@ -37,13 +38,8 @@ async function refresh(){
     let apiKey = 'q4yfgRGEhyRygj2fDKAZA02kiOUDkaPP'
     let additions = '&details=true&metric=true';
 
-    // let response = await fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationId}?apikey=${apiKey}${additions}`);
-    // weatherData = await response.json();
-    //let str = JSON.stringify(weatherData);
-    // console.log(weatherData);
-    // document.querySelector('#json').innerHTML = str;
-
-    // let x = mockupResponse.Headline.Text;
+    let response = await axios.get(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationId}?apikey=${apiKey}${additions}`);
+    let weatherData = response.data;
 
     for( let i = 0; i < 5; i++ ) {
         fillDayInfo(i, weatherData);
@@ -59,8 +55,8 @@ async function getLocation(e){
     let additions = '&details=true&metric=true';
     const city = document.querySelector("#input-location").value;
     const gl = async () => {
-        let response = await fetch(`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${apiKey}&q=${city}`);
-        let data = await response.json();
+        let response = await axios.get(`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${apiKey}&q=${city}`);
+        let data = response.data;
         try {
              locationId = data[0].Key;
         } catch (error) {
@@ -138,8 +134,8 @@ function makeRainChart(data) {
         let forecast = data.DailyForecasts[i];
         let date = new Date(forecast.Date);
         params.labels.push(days[date.getDay()]);
-        params.series[0].push(forecast.Day.RainProbability);
-        params.series[1].push(forecast.Night.RainProbability);
+        params.series[0].push(forecast.Day.PrecipitationProbability);
+        params.series[1].push(forecast.Night.PrecipitationProbability);
     }
 
 
