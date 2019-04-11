@@ -137,3 +137,15 @@ h1 {
 .ct-series-b .ct-bar {
     stroke: var(--series-b-color) !important;
 }
+
+@media (max-width: 600px) {
+    #input-location {
+        box-sizing: border-box;
+        width: 100%;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+    .icon-search {
+        display: none;
+    }
+}
