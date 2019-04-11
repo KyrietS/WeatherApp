@@ -4,7 +4,8 @@ const icon = require('./icons');
 const axios = require('axios');
 
 // TYMCZASOWO DO TESTÓW
-let weatherData = mockupResponse;
+// let weatherData = mockupResponse;
+let weatherData;
 
 // Funkcja uzupełnia informację dla danego dnia
 function fillDayInfo( dayIndex, data ) {
@@ -39,7 +40,7 @@ async function refresh(){
     let additions = '&details=true&metric=true';
 
     let response = await axios.get(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationId}?apikey=${apiKey}${additions}`);
-    let weatherData = response.data;
+    weatherData = await response.data;
 
     for( let i = 0; i < 5; i++ ) {
         fillDayInfo(i, weatherData);
@@ -138,7 +139,6 @@ function makeRainChart(data) {
         params.series[1].push(forecast.Night.PrecipitationProbability);
     }
 
-
     var options = {
         seriesBarDistance: 15,
         showPoint: false,
@@ -190,6 +190,7 @@ function fillDetailsInfo(data){
     for(let i=0; i<days.length;i++){
         if(days[i].classList.contains("selected")){
             dayIndex = i;
+            break;
         }
     }
     // Złapanie odpowiedniego obiektu JSON z dniem
@@ -207,4 +208,5 @@ function fillDetailsInfo(data){
     // Prawdopodobieństwo opadów
     const rainProbability = forecast.Day.PrecipitationProbability;
     tiles[2].querySelector('p').textContent = rainProbability+"%";
+
 }
