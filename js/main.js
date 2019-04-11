@@ -38,8 +38,8 @@ async function refresh(){
     let apiKey = 'q4yfgRGEhyRygj2fDKAZA02kiOUDkaPP'
     let additions = '&details=true&metric=true';
 
-    let response = await axios.get(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationId}?apikey=${apiKey}${additions}`);
-    weatherData = await response.data;
+    // let response = await axios.get(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationId}?apikey=${apiKey}${additions}`);
+    // weatherData = await response.data;
 
     for( let i = 0; i < 5; i++ ) {
         fillDayInfo(i, weatherData);
