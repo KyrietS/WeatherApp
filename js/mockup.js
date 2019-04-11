@@ -1,5 +1,5 @@
 
-var mockupResponse = {
+module.exports = {
     "Headline": {
       "EffectiveDate": "2019-04-09T08:00:00+02:00",
       "EffectiveEpochDate": 1554789600,

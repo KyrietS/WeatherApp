@@ -1,4 +1,7 @@
-﻿// Ikony tylko dla dnia
+﻿const mockupResponse = require('./mockup');
+const Chartist = require('chartist');
+
+// Ikony tylko dla dnia
 // https://developer.accuweather.com/weather-icons
 var icon = {
     1: 'icon-sun',
@@ -21,7 +24,6 @@ var icon = {
     18: 'icon-hail',
     19: 'icon-windy-rain',
     20: 'icon-windy-rain',
-    20: 'icon-windy-rain',
     21: 'icon-windy-rain',
     22: 'icon-snow',
     23: 'icon-snow-heavy',
@@ -43,7 +45,6 @@ function fillDayInfo( dayIndex, data ) {
     const day = document.querySelectorAll(".day")[dayIndex];
     // Złapanie odpowiedniego obiektu JSON z dniem
     const forecast = data.DailyForecasts[dayIndex];
-
     // Nazwa dnia
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const date = new Date(forecast.Date);
