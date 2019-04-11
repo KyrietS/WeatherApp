@@ -45,10 +45,11 @@ async function refresh(){
     for( let i = 0; i < 5; i++ ) {
         fillDayInfo( i, mockupResponse );
     }
+    fillDetailsInfo(mockupResponse);
     makeCharts(mockupResponse);
 }
 refresh();
-
+//szukajka lokacji
 async function getLocation(e){
     e.preventDefault();
     let apiKey = 'drOPfTFPJtMpmZP8HhGBAmXmfx5wMytH'
@@ -169,4 +170,42 @@ function makeRainChart(data) {
     ];
     new Chartist.Bar('#rain_graph', params, options, responsiveOptions);
 }
+//klikanie dni
+function changeSelectedDay(e) {
+    if (!e.currentTarget.classList.contains("selected")) {
+        document.querySelector(".selected").classList.remove("selected");
+        e.currentTarget.classList.add("selected");
+    }
+    fillDetailsInfo(mockupResponse);
+}
+document.querySelector(".day-1").addEventListener("click", changeSelectedDay)
+document.querySelector(".day-2").addEventListener("click", changeSelectedDay)
+document.querySelector(".day-3").addEventListener("click", changeSelectedDay)
+document.querySelector(".day-4").addEventListener("click", changeSelectedDay)
+document.querySelector(".day-5").addEventListener("click", changeSelectedDay)
+//wypełnianie szczegółow
+function fillDetailsInfo(data){
+    // Złapanie odpowiedniego div'a z dniem
+    const days = document.querySelectorAll(".day");
+    let dayIndex = 0;
+    for(let i=0; i<days.length;i++){
+        if(days[i].classList.contains("selected")){
+            dayIndex = i;
+        }
+    }
+    // Złapanie odpowiedniego obiektu JSON z dniem
+    const forecast = data.DailyForecasts[dayIndex];
+    // Tablica kafelków ze szczegółami
+    const tiles = document.querySelectorAll('.day-info');
+    // Jakość powietrza
+    const quality = forecast.AirAndPollen[0].Category;
+    tiles[0].querySelector('p').textContent = quality;
 
+    // Prędkość wiatru
+    const windSpeed = forecast.Day.Wind.Speed.Value;
+    tiles[1].querySelector('p').textContent = Math.round(windSpeed)+" km/h";
+
+    // Prawdopodobieństwo opadów
+    const rainProbability = forecast.Day.PrecipitationProbability;
+    tiles[2].querySelector('p').textContent = rainProbability+"%";
+}
