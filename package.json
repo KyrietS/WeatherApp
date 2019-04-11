@@ -1,0 +1,29 @@
+{
+  "name": "pogodynka",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KyrietS/WeatherApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KyrietS/WeatherApp/issues"
+  },
+  "homepage": "https://github.com/KyrietS/WeatherApp#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "chartist": "^0.11.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
+  }
+}

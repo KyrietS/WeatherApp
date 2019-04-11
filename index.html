@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style/main.css">
+    <link rel="stylesheet" href="style/chartist.min.css">
+    <script src="js/main-min.js" async></script>
+
+    <title>WeatherApp</title>
+</head>
+<body>
+    <h1>WeatherApp</h1>
+    <form id="form-location"><i id="search-location" class="icon icon-search"></i><input type="text" name="location" id="input-location" placeholder="Podaj miejscowość" value="Wrocław"></form>
+    <div id="days">
+        <div class="tile day day-1 selected">
+            <h2>Today</h2>
+            <p class="temperature">1°C</p>
+            <i class="icon icon-sun"></i>
+            <p class="forecast">Mostly sunny; mild</p>
+        </div>
+        <div class="tile day day-2">
+            <h2>Tue</h2>
+            <p class="temperature">8°C</p>
+            <i class="icon icon-cloud-sun"></i>
+            <p class="forecast">Clouds and sun; cooler elo melo 320</p>
+        </div>
+        <div class="tile day day-3">
+            <h2>Wed</h2>
+            <p class="temperature">11°C</p>
+            <i class="icon icon-windy"></i>
+            <p class="forecast">Mostly cloudy; chilly</p>
+        </div>
+        <div class="tile day day-4">
+            <h2>Thu</h2>
+            <p class="temperature">10°C</p>
+            <i class="icon icon-clouds"></i>
+            <p class="forecast">Clouds and sun; chilly</p>
+        </div>
+        <div class="tile day day-5">
+            <h2>Fri</h2>
+            <p class="temperature">19°C</p>
+            <i class="icon icon-cloud-sun"></i>
+            <p class="forecast">Mostly cloudy; mild</p>
+        </div>
+    </div>
+    <div id="day-summary">
+        <div class="day-info tile">
+            <h2>Air Quality</h2>
+            <p>Good</p>
+        </div>
+        <div class="day-info tile">
+            <h2>Wind</h2>
+            <p>15 km/h</p>
+        </div>
+        <div class="day-info tile">
+            <h2>Fall Probability</h2>
+            <p>39%</p>
+        </div>
+    </div>
+    <div id="graphs_container">
+        <div class="tile graph">
+            <h2>Temperature chart</h2>
+            <div id="temperature_graph" class="ct-chart ct-octave">
+            </div>
+            <span style="color:var(--series-a-color);">&#9632</span> Real Feel Temperature<br>
+            <span style="color:var(--series-b-color);">&#9632</span> Actual Temperature
+        </div>
+        <div class="tile graph">
+            <h2>Precipitation chart</h2>
+            <div id="rain_graph" class="ct-chart ct-octave">
+            </div>
+            <span style="color:var(--series-a-color);">&#9632</span> Day<br>
+            <span style="color:var(--series-b-color);">&#9632</span> Night
+        </div>
+    </div>
+   
+</body>
+</html>
