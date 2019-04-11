@@ -1,42 +1,6 @@
 ﻿const mockupResponse = require('./mockup');
 const Chartist = require('chartist');
-
-// Ikony tylko dla dnia
-// https://developer.accuweather.com/weather-icons
-var icon = {
-    1: 'icon-sun',
-    2: 'icon-sun',
-    3: 'icon-cloud-sun',
-    4: 'icon-cloud-sun',
-    5: 'icon-fog-sun',
-    6: 'icon-cloud-sun',
-    7: 'icon-clouds',
-    8: 'icon-clouds',
-    9: 'icon-na',
-    10: 'icon-na',
-    11: 'icon-fog',
-    12: 'icon-rain',
-    13: 'icon-rain',
-    14: 'icon-rain',
-    15: 'icon-hail',
-    16: 'icon-hail',
-    17: 'icon-hail',
-    18: 'icon-hail',
-    19: 'icon-windy-rain',
-    20: 'icon-windy-rain',
-    21: 'icon-windy-rain',
-    22: 'icon-snow',
-    23: 'icon-snow-heavy',
-    24: 'icon-snowflake',
-    25: 'icon-rain',
-    26: 'icon-rain',
-    27: 'icon-na',
-    28: 'icon-na',
-    29: 'icon-rain',
-    30: 'icon-temperature',
-    31: 'icon-snowflake',
-    32: 'icon-wind',
-}
+const icon = require('./icons');
 
 // Funkcja uzupełnia informację dla danego dnia
 function fillDayInfo( dayIndex, data ) {
