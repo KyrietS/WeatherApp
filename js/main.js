@@ -26,13 +26,12 @@ function fillDayInfo( dayIndex, data ) {
     // Opis
     day.querySelector('.forecast').textContent = forecast.Day.ShortPhrase;
 }
-
+let locationId = '273125';
 // Funkcja uruchamiana przy starcie strony, pobiera 
 // dane (tymczasowo mockupResponse) i uzupełnia poszczególne dni informacjami
-(async function(){
-
+async function refresh(){
+    console.log(locationId)
     let apiKey = 'q4yfgRGEhyRygj2fDKAZA02kiOUDkaPP'
-    let locationId = '273125';
     let additions = '&details=true&metric=true';
 
     // let response = await fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationId}?apikey=${apiKey}${additions}`);
@@ -47,10 +46,11 @@ function fillDayInfo( dayIndex, data ) {
         fillDayInfo( i, mockupResponse );
     }
     makeCharts(mockupResponse);
-})()
+}
+refresh();
 
-let locationId = '273125';
-const getLocation = (e) => {
+async function getLocation(e){
+    e.preventDefault();
     let apiKey = 'drOPfTFPJtMpmZP8HhGBAmXmfx5wMytH'
     let additions = '&details=true&metric=true';
     const city = document.querySelector("#input-location").value;
@@ -63,12 +63,10 @@ const getLocation = (e) => {
             console.log('Wrong city')
         }
     }
-    gl()
-    e.preventDefault();
+    await gl()
+    refresh();  
 }
-
-document.querySelector("#input-location").addEventListener("input", getLocation);
-
+document.querySelector("#form-location").addEventListener("submit", getLocation);
 //wykresiki
 function makeCharts(data){
     makeTemperatureChart(data);
@@ -76,9 +74,7 @@ function makeCharts(data){
 }
 function makeTemperatureChart(data){
         var params = {
-            // A labels array that can contain any sort of values
             labels: [],
-            // Our series array that contains series objects or in this case series data arrays
             series: [
                 [],
                 []
@@ -127,9 +123,7 @@ function makeTemperatureChart(data){
 }
 function makeRainChart(data) {
     var params = {
-        // A labels array that can contain any sort of values
         labels: [],
-        // Our series array that contains series objects or in this case series data arrays
         series: [
             [],
             []
@@ -148,10 +142,6 @@ function makeRainChart(data) {
     var options = {
         seriesBarDistance: 15,
         showPoint: false,
-        //lineSmooth: false,
-        axisX: {
-            //showGrid: false
-        },
         axisY: {
             onlyInteger: true,
             labelInterpolationFnc: function (value) {
@@ -179,3 +169,4 @@ function makeRainChart(data) {
     ];
     new Chartist.Bar('#rain_graph', params, options, responsiveOptions);
 }
+
