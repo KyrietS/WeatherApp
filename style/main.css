@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import "variables.css";
+@import "fontello.css";
+
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--primary);
+    color: var(--font-light);
+    box-sizing: border-box;
+    text-align: center;
+    padding: 10px 30px;
+}
+
+textarea, select, input, button { outline: none; }
+
+h1 {
+    font-size: 3em;
+    color: var(--font-dark);
+    text-align: center;
+}
+
+#input-location {
+    display: inline-block;
+    font-size: 2em;
+    color: var(--font-light);
+    background: none;
+    border: none;
+    border-bottom: 3px solid var(--dark);
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 15px;
+    padding-bottom: 5px;
+    max-width: 600px;
+    transition: all 500ms ease-in-out;
+}
+#input-location:focus {
+    border-bottom: 3px solid var(--font-light);
+}
+.icon-search{
+    font-size: 3em;
+}
+
+#days {
+    padding: 50px 0 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.tile{
+    background-color: var(--light);
+    box-shadow: var(--shadow);
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+}
+.day {
+    margin: 7px;
+    padding: 15px;
+    width: 150px;
+}
+.day:hover {
+    box-shadow: var(--shadow-hover);
+}
+.day>h2 {
+    width: 100%;
+    font-size: 1.5em;
+    color: var(--font-dark);
+    margin: 5px 0;
+    padding: 5px 0;
+    border-bottom: 2px solid var(--dark);
+}
+.day .temperature {
+    margin: 5px;
+    font-size: 4em;
+}
+.day .icon {
+    font-size: 4em;
+}
+.day.selected {
+    color: var(--font-selected);
+}
+
+#day-summary {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.day-info {
+    width: 200px;
+    padding: 10px;
+    margin: 5px;
+}
+.day-info>h2 {
+    margin: 10px 0;
+    border-bottom: 2px solid var(--dark);
+}
+.day-info>p {
+    font-size: 3em;
+    font-weight: bold;
+    color: var(--font-light);
+    margin: 35px 0;
+}
+
+#graphs_container {
+    padding: 50px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.graph {
+    margin: 7px;
+    padding: 15px;
+    width: 450px;
+}
+.graph>h2 {
+    width: 100%;
+    font-size: 1.5em;
+    color: var(--font-dark);
+    margin: 5px 0;
+    padding: 5px 0;
+    border-bottom: 2px solid var(--dark);
+}
+/*chartist*/
+.ct-series-a .ct-line {
+    stroke: var(--series-a-color) !important;
+}
+
+.ct-series-b .ct-line {
+    stroke: var(--series-b-color) !important;
+}
+
+.ct-series-a .ct-bar {
+    stroke: var(--series-a-color) !important;
+}
+.ct-series-b .ct-bar {
+    stroke: var(--series-b-color) !important;
+}
+
+@media (max-width: 600px) {
+    #input-location {
+        box-sizing: border-box;
+        width: 100%;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+    .icon-search {
+        display: none;
+    }
+}
