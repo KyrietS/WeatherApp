@@ -2,6 +2,9 @@
 const Chartist = require('chartist');
 const icon = require('./icons');
 
+// TYMCZASOWO DO TESTÓW
+let weatherData = mockupResponse;
+
 // Funkcja uzupełnia informację dla danego dnia
 function fillDayInfo( dayIndex, data ) {
 
@@ -35,18 +38,18 @@ async function refresh(){
     let additions = '&details=true&metric=true';
 
     // let response = await fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationId}?apikey=${apiKey}${additions}`);
-    // let data = await response.json();
-    // let str = JSON.stringify(data);
-    // console.log(data);
+    // weatherData = await response.json();
+    //let str = JSON.stringify(weatherData);
+    // console.log(weatherData);
     // document.querySelector('#json').innerHTML = str;
 
     // let x = mockupResponse.Headline.Text;
 
     for( let i = 0; i < 5; i++ ) {
-        fillDayInfo( i, mockupResponse );
+        fillDayInfo(i, weatherData);
     }
-    fillDetailsInfo(mockupResponse);
-    makeCharts(mockupResponse);
+    fillDetailsInfo(weatherData);
+    makeCharts(weatherData);
 }
 refresh();
 //szukajka lokacji
@@ -176,7 +179,7 @@ function changeSelectedDay(e) {
         document.querySelector(".selected").classList.remove("selected");
         e.currentTarget.classList.add("selected");
     }
-    fillDetailsInfo(mockupResponse);
+    fillDetailsInfo(weatherData);
 }
 document.querySelector(".day-1").addEventListener("click", changeSelectedDay)
 document.querySelector(".day-2").addEventListener("click", changeSelectedDay)
